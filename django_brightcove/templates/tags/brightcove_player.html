@@ -1,13 +1,28 @@
-<object id="myExperience{{ player_id }}" class="BrightcoveExperience">
-    <param name="bgcolor" value="{{ bgcolor }}" />
-    <param name="width" value="{{ width }}" />
-    <param name="height" value="{{ height }}" />
-    <param name="autoStart" value="false" />
-    <param name="playerID" value="{{ playerID }}" />
-    <param name="playerKey" value="{{ playerKey }}" />
-    <param name="isVid" value="{{ isVid }}" />
-    <param name="isUI" value="{{ isUI }}" />
-    <param name="dynamicStreaming" value="{{ dynamicStreaming }}" />
+{% if use_advanced_embed %}
+  <video
+    id="myExperience{{ video_id }}"
+    class="BrightcoveExperience"
 
-    <param name="@videoPlayer" value="{{ player_id }}" />
-</object>
+    data-video-id="{{ video_id }}"
+    data-account="{{ account_id }}"
+    data-player="{{ player_id }}"
+    data-embed="{{ embed_id }}"
+    width="{{ width }}"
+    height="{{ height }}"
+    {% if application_id %}
+      data-application-id="{{ application_id }}"
+    {% endif %}
+    {% if show_controls %}
+      controls
+    {% endif %}
+  ></video>
+  <script src="//players.brightcove.net/{{ account_id }}/{{ player_id }}/index.min.js"></script>
+{% else %}
+  <iframe
+    src="//players.brightcove.net/{{ account_id }}/{{ player_id }}_{{ embed_id }}/index.html?videoId={{ video_id }}"
+    allowfullscreen
+    webkitallowfullscreen
+    mozallowfullscreen
+    style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; width: 100%; height: 100%;">
+  </iframe>
+{% endif %}
