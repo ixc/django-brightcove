@@ -139,10 +139,11 @@ class BrightcoveConnector(object):
             # If auth failed, reset access token in preparation to try again
             if response.status_code == 401:
                 self.access_token = None
+                continue
             # Return data from successful response immediately, after checking
             # for error conditions for all response codes where we expect to
             # get JSON data
-            if response.status_code in [200, 400, 401, 404]:
+            if response.status_code in [200, 400, 404]:
                 response_data = response.json()
                 # Parse error response data and package in exception
                 if response.status_code != 200:
