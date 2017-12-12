@@ -29,7 +29,7 @@ From Github
 Setup
 *****
 
-Before starting, you will need a Brightcove API token in order to connect to brightcove: http://docs.brightcove.com/en/video-cloud/media/guides/managing-media-api-tokens.html
+Before starting, you will need a Brightcove API client ID and secret key: https://studio.brightcove.com/products/videocloud/admin/oauthsettings
 
 The first step is to add the app in your installed apps list in settings.py
 
@@ -41,11 +41,13 @@ The first step is to add the app in your installed apps list in settings.py
         ...
     )
 
-The you will need to declare the loaders you want to add in your settings.py file
+The you will need to declare your credentials in your settings.py file
 
 .. code-block::  python
 
-    BRIGHTCOVE_TOKEN = 'YOUR_TOKEN..'
+    BRIGHTCOVE_ACCOUNT_ID = '...'
+    BRIGHTCOVE_CLIENT_ID = '...'
+    BRIGHTCOVE_CLIENT_SECRET = '...'
 
 Finally you will need to add the django-brightcove urls to your Root URLCONF
 
